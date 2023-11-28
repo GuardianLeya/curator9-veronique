@@ -1,16 +1,20 @@
-# This is a sample Python script.
+import telebot
+bot = telebot.Telebot('6810377813:AAHBdWlT05IaWtj3vWd6WNiUKOfIMUDe-W0')
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+@bot.message_handler(commands=['start'])
+def main(message):
+    bot.send_message(message.chat.id, 'Привет:) Напиши /morning , если ты только что проснулся; напиши /night , если ты ложишься спать; напиши /niceday , и у тебя будет хороший день)', parse_mode='Markdown')
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+@bot.message_handler(commands=['/morning'])
+def main(message):
+    bot.send_message(message.chat.id, 'Доброе утро:)', parse_mode='Markdown')
+    
+@bot.message_handler(commands=['/night'])
+def main(message):
+    bot.send_message(message.chat.id, 'Спокойной ночи:)', parse_mode='Markdown')
+    
+@bot.message_handler(commands=['/niceday'])
+def main(message):
+    bot.send_message(message.chat.id, '[Желаю хорошего дня:)](https://pozdravok.com/pozdravleniya/lyubov/dobroe-utro/khoroshego-dnya/proza.htm)', parse_mode='Markdown')
+    
+bot.infinity_polling()
